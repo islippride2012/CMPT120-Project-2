@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<!-- Caitlin Murray
+Introduction to Programming
+Project 2 - My First Adventure Game -->
+  <head>
+    <meta charset = "utf-8">
+    <title>Agent P Adventure Game</title>
+    <script type = "text/javascript">
+      document.write( "<h1 style = 'color: teal; font-size: 50pt; text-align: center;'>" );
+      document.write( "Agent P Adventure Game</h1>" );
+      window.alert( "WARNING! \nThis project may be an epic fail." );
+    </script>
+    <script type = "text/JavaScript">
+      var score = 0;
+      var north = false;
+      var east = false;
+      var south = false;
+      var west = false;
+      function btn_north_click () {
+        var message = "You headed towards towards the back of the yard to Phineas and Ferb's work zone where the roller coaster is going to be built. No hideout entrance here."
+        updateText(message);
+        //alert(message);
+        if (north===false) { //if we havn't been in the west direction yet
+            score = score + 5; //take the global variable score and add 5
+            north = true; //now it's true because we have been in this direction before  
+        }           
+      }
+      
+      function btn_east_click () {
+        var message = "Buford and Baljeet are supposed to be designing the roller coaster cars, but instead, Buford is sitting on Baljeet. No hideout entrance here."
+        updateText(message);
+        //alert(message);
+        if (east===false) { //if we havn't been in the west direction yet
+            score = score + 5; //take the global variable score and add 5
+            east = true; //now it's true because we have been in this direction before 
+        }         
+      }
+      function btn_south_click () {
+        var message = "Your heading toward the house and you see Candace on the phone, probably with her mom trying to bust Phineas and Ferb for making a roller coaster. No hideout entrance here."
+        updateText(message);
+        //alert(message);
+        if (south===false) { //if we havn't been in the west direction yet
+            score = score + 5; //take the global variable score and add 5
+            south = true; //now it's true because we have been in this direction before
+        }
+      }            
+      function btn_west_click () {
+        var message = "You headed towards the side of the yard where there is a tree, and an entrance to your hideout! Woo-hoo!"
+        updateText(message);
+        //alert(message);
+          if (west===false) { //if we havn't been in the west direction yet
+              score = score + 5; //take the global variable score and add 5
+              west = true; //now it's true because we have been in this direction before
+          }
+      }            
+    </script>
+    <script type = "text/JavaScript">
+      function btn_score_click () {
+        var number = score;
+        alert(number);
+      }     
+      function updateText(message) {
+        var ta = document.getElementById ("taGame");
+        ta.value = ta.value + "\n\n" + message;
+      }
+    </script>
+  </head>
+  <body style="background-color: orange;">
+    <p>
+      <img src = "http://images.wikia.com/phineasandferb/images/1/15/Heinz_Doofenshmirtz_2.png" width = "450" height = "700" alt = "doof">
+      <img src = "http://4.bp.blogspot.com/-F361c2-C2T4/T1fPKB_VksI/AAAAAAAABFw/IaWj9860y14/s1600/agentP.png" width = "338" height = "450" alt = "agent p">
+    </p>
+    <br>
+    <br />
+    <p><a href = "http://www.youtube.com/watch?v=bVPd6hf-Nlw&ampfeature=related">Agent P Theme Song</a></p>
+    <video controls>
+      <source src = "http://www.youtube.com/watch?v=bVPd6hf-Nlw&feature=related" type = "video/mp4">
+      <source src = "http://www.youtube.com/watch?v=bVPd6hf-Nlw&feature=related" type = "video/webm">
+    </video>
+    <br>
+    <br />
+    <p>
+      <img src = "http://images.wikia.com/phineasandferb/images/6/66/Phineas_and_Ferb_planning_out_their_rollercoaster_plan.jpg" width = "400" height = "300" alt = "rollercoaster">
+    </p>
+    <br>    
+    <textarea id = "taGame" rows = "20" cols = "160" >You are sitting with Phineas and Ferb in the middle of the backyard. They are preparing to make the coolest roller coaster ever and now is the perfect time to sneak away to your secret hideout.  
+There are many entrances to your hideout and you must find one before someone notices. 
+Which way should we go?
+    </textarea>
+    <br>
+    <input type = "button"
+           value = "North"
+           onclick = "btn_north_click();">
+    <input type = "button"
+           value = "East"
+           onclick = "btn_east_click();">
+    <input type = "button"
+           value = "South"
+           onclick = "btn_south_click();">
+    <input type = "button"
+           value = "West"
+           onclick = "btn_west_click();">
+    <br>
+    <br /> 
+    <br>
+    <br />  
+    <input type = "button"
+           value = "Score"
+           onclick = "btn_score_click();">
+    <br>
+    <br />
+    <p>
+      <a href = "mailto:caitlin.murray1@marist.edu">
+        <img src = "http://www.collectoons.com/imgtoon/255/256/20100108_150924Peter.gif" width = "100" height = "120" alt = "peter">
+      </a>
+      <br>
+      Peter the Panda is a pretty cool agent. If you need to email me, just click on Peter and he'll help you out!
+    </p>
+    <br>
+    <br />
+    <p class="footer">
+      <a href="http://validator.w3.org/#validate_by_input">Validate as HTML5</a>
+      <br>
+      <br />
+    </p>
+  </body>
+</html>
