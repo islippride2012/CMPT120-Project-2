@@ -1,0 +1,366 @@
+<!DOCTYPE HTML>
+<html>
+<!-- Caitlin Murray
+Introduction to Programming
+Project 2 - My First Adventure Game -->
+  <head>
+    <meta charset = "utf-8">
+    <title>Agent P Adventure Game</title>
+    <script type = "text/javascript">
+      document.write( "<h1 style = 'color: teal; font-size: 50pt; text-align: center;'>" );
+      document.write( "Agent P Adventure Game</h1>" );
+      window.alert( "WARNING! \nThis project may be an epic fail." );
+    </script>
+    
+    <script type = "text/JavaScript">
+      var score = 0;
+      
+      var north = false;
+      var east = false;
+      var south = false;
+      var west = false;
+      
+      var currentLocation = 0;
+      
+      var NORTH = 1;
+      var EAST = 2;
+      var SOUTH = 3;
+      var WEST = 4;
+      
+      //constants for various locations in this game
+      var ConstructionZone = 100;
+      var CarZone = 101;
+      var House = 102;
+      var Tree = 103;
+      var Hideout = 104;
+      var Equipment = 105;
+      var Monogram = 106;
+      
+      var haveVisitedConstruction = false;
+      var haveVisitedCarZone = false;
+      var haveVisitedHouse = false;
+      var haveVisitedTree = false;
+      var haveVisitedHideout = false;
+      var haveVisitedEquipment = false;
+      var haveVisitedMonogram = false;
+      
+      function btn_north_click () {
+        if(currentLocation===0) {
+          enable_buttons();
+          currentLocation = 100;
+          var message1 = "You headed towards towards the back of the yard to Phineas and Ferb's work zone where the roller coaster is going to be built. No hideout entrance here."
+          updateText(message1);
+          var north_disable = document.getElementById("north_button");
+          north_disable.disabled = "disabled";
+          var east_disable = document.getElementById("east_button");
+          east_disable.disabled = "disabled";
+          var west_disable = document.getElementById("west_button");
+          west_disable.disabled = "disabled";
+            if (haveVisitedConstruction===false) { //if we havn't been in the north direction yet
+              score = score + 5; //take the global variable score and add 5
+              haveVisitedConstruction = true; //now it's true because we have been in this direction before
+            }
+        } else if (currentLocation===102) {
+          enable_buttons();
+          currentLocation = 0;
+          var message2 = "You are heading back to where you started to the middle of the back yard."
+          updateText(message2);
+        } else if (currentLocation===106) {
+          enable_buttons();
+          currentLocation = 104;
+          var message3 = "You are heading towards where you first entered your hideout."
+          updateText(message3);
+          var west_disable = document.getElementById("west_button");
+          west_disable.disabled = "disabled";
+        } else if (currentLocation===104) {
+          enable_buttons();
+          currentLocation = 105;
+          var message4 = "You are heading towards a giant tv screen where Major Monogram is waiting for you to give you an assignment."
+          updateText(message4);
+          var north_disable = document.getElementById("north_button");
+          north_disable.disabled = "disabled";
+          var east_disable = document.getElementById("east_button");
+          east_disable.disabled = "disabled";
+          var west_disable = document.getElementById("west_button");
+          west_disable.disabled = "disabled";
+            if (haveVisitedMonogram===false) { //if we havn't been in the north direction yet
+              score = score + 5; //take the global variable score and add 5
+              haveVisitedMonogram = true; //now it's true because we have been in this direction before
+            }
+        }         
+      }
+      
+      function btn_east_click () {
+        if(currentLocation===104) {
+          enable_buttons();
+          currentLocation = 103;
+          var message1 = "You are coming out of the tree where you entered your hideout."
+          updateText(message1);
+          var north_disable = document.getElementById("north_button");
+          north_disable.disabled = "disabled";
+          var south_disable = document.getElementById("south_button");
+          south_disable.disabled = "disabled";
+        } else if (currentLocation===103) {
+          enable_buttons();
+          currentLocation = 0;
+          var message2 = "You are heading back to where you started towards the middle of the back yard."
+          updateText(message2);
+        } else if (currentLocation===0) {
+          enable_buttons();
+          currentLocation = 101;
+          var message3 = "Buford and Baljeet are supposed to be designing the roller coaster cars, but instead, Buford is sitting on Baljeet. No hideout entrance here."
+          updateText(message3);
+          var north_disable = document.getElementById("north_button");
+          north_disable.disabled = "disabled";
+          var east_disable = document.getElementById("east_button");
+          east_disable.disabled = "disabled";
+          var south_disable = document.getElementById("south_button");
+          south_disable.disabled = "disabled";
+            if (haveVisitedCarZone===false) { //if we havn't been in the east direction yet
+              score = score + 5; //take the global variable score and add 5
+              haveVisitedCarZone = true; //now it's true because we have been in this direction before
+            }
+        }        
+      }
+      
+      function btn_south_click () {
+        if (currentLocation===100) {
+          enable_buttons();
+          currentLocation = 0;
+          var message1 = "You heading back to where you started towards the middle of the back yard."
+          updateText(message1);
+        } else if (currentLocation===0) {
+          enable_buttons();
+          currentLocation = 102;
+          var message2 = "Your heading toward the house and you see Candace on the phone, probably with her mom trying to bust Phineas and Ferb for making a roller coaster. No hideout entrance here."
+          updateText(message2);
+          var east_disable = document.getElementById("east_button");
+          east_disable.disabled = "disabled";
+          var west_disable = document.getElementById("west_button");
+          west_disable.disabled = "disabled";
+          var south_disable = document.getElementById("south_button");
+          south_disable.disabled = "disabled";
+            if (haveVisitedHouse===false) { //if we havn't been in the south direction yet
+              score = score + 5; //take the global variable score and add 5
+              haveVisitedHouse = true; //now it's true because we have been in this direction before
+            }
+        } else if (currentLocation===105) {
+          enable_buttons();
+          currentLocation = 104;
+          var message3 = "You are coming back to where you first entered your hideout."
+          updateText(message3);
+          var west_disable = document.getElementById("west_button");
+          west_disable.disabled = "disabled";
+        } else if (currentLocation===104) {
+          enable_buttons();
+          currentLocation = 106;
+          var message4 = "You entered your equipment room. There are different gadgets and transportation devices."
+          updateText(message4);
+          var east_disable = document.getElementById("east_button");
+          east_disable.disabled = "disabled";
+          var west_disable = document.getElementById("west_button");
+          west_disable.disabled = "disabled";
+          var south_disable = document.getElementById("south_button");
+          south_disable.disabled = "disabled";
+            if (haveVisitedEquipment===false) { //if we havn't been in the south direction yet
+              score = score + 5; //take the global variable score and add 5
+              haveVisitedEquipment = true; //now it's true because we have been in this direction before
+            }
+        }
+      }            
+      
+      function btn_west_click () {
+        if (currentLocation===101) {
+          enable_buttons();
+          currentLocation = 0;
+          var message1 = "You are heading back to where you started towards the middle of the back yard."
+          updateText(message1);
+        } else if (currentLocation===0) {
+          enable_buttons();
+          currentLocation = 103;
+          var north_disable = document.getElementById("north_button");
+          north_disable.disabled = "disabled";
+          var south_disable = document.getElementById("south_button");
+          south_disable.disabled = "disabled";
+          var message2 = "You headed towards the side of the yard where there is a tree, and an entrance to your hideout! Woo-hoo!"
+          updateText(message2);
+            if (haveVisitedTree===false) { //if we havn't been in the west direction yet
+              score = score + 5; //take the global variable score and add 5
+              haveVisitedTree = true; //now it's true because we have been in this direction before
+            }
+        } else if (currentLocation===103) {
+          enable_buttons();
+          currentLocation = 104;
+          var message3 = "You entered your hideout. There are two doors, one to your left and one to your right."
+          updateText(message3);
+          var west_disable = document.getElementById("west_button");
+          west_disable.disabled = "disabled";
+            if (haveVisitedHideout===false) { //if we havn't been in the west direction yet
+              score = score + 5; //take the global variable score and add 5
+              haveVisitedHideout = true; //now it's true because we have been in this direction before
+            }
+        }
+      }  
+      
+      function btn_score_click() {
+        var number = "Score:" + "" + score;
+        updateText(number);
+      }  
+      
+      function enable_buttons()
+      {
+          var n = document.getElementById("north_button");
+          var s = document.getElementById("south_button");
+          var e = document.getElementById("east_button");
+          var w = document.getElementById("west_button");
+          
+          n.disabled = "";
+          s.disabled = "";
+          e.disabled = "";
+          w.disabled = "";
+      }
+      
+      function btn_Go_click() {
+        var txt = document.getElementById("txtCommand").value;
+        switch(txt)
+        {
+          case "north": btn_north_click(); //when you type north, take the message from btn_north_click
+          break;
+          case "east": btn_east_click();
+          break;
+          case "south": btn_south_click();
+          break;
+          case "west": btn_west_click();
+          break;
+          case "n": btn_north_click();
+          break;
+          case "e": btn_east_click();
+          break;
+          case "s": btn_south_click();
+          break;
+          case "w": btn_west_click();
+          break;
+          case "NORTH": btn_north_click(); 
+          break;
+          case "EAST": btn_east_click();
+          break;
+          case "SOUTH": btn_south_click();
+          break;
+          case "WEST": btn_west_click();
+          break;
+          case "N": btn_north_click();
+          break;
+          case "E": btn_east_click();
+          break;
+          case "S": btn_south_click();
+          break;
+          case "W": btn_west_click();
+          break;
+          //default: alert("ERROR");
+          default: updateText("INVALID COMMAND");
+        }
+      } 
+      
+      function updateText(message) {        
+        var ta = document.getElementById ("taGame");
+        ta.value = message + "\n\n" + ta.value;
+        //message = message + "[" + currentLocation + "]";
+      }
+      
+      function btn_CurrentLocation_click() {
+        //var CurrentLocation = document.getElementById("CurrentLocation").value;
+        //var location = document.getElementById ("currentLocation");
+        //message = message + "[" + currentLocation + "]";
+        //updateText(message);
+        switch(currentLocation)
+        {
+          case 0: updateText("CURRENT LOCATION UPDATE: YOU ARE IN THE MIDDLE OF THE BACK YARD.");
+          case 100: updateText("CURRENT LOCATION UPDATE: YOU ARE IN PHINEAS AND FERB'S WORK ZONE WHERE THE ROLLER COASTER IS GOING TO BE BUILT.");
+          break;
+          //in stead of if-else statements
+          case 101: updateText("CURRENT LOCATION UPDATE: BUFORD AND BALJEET ARE SUPPOSED TO BE DESIGNING THE ROLLER COASTER CARS, BUT INSTEAD BUFORD IS SITTING ON BALJEET.");
+          break;
+          case 102: updateText("CURRENT LOCATION UPDATE: YOU ARE IN FRONT OF THE HOUSE AND YOU SEE CANDACE ON THE PHONE; SHE'S PROBABLY ONE THE PHONE WITH HER MO TRYING TO BUST PHINEAS AND FERB FOR MAKING A ROLLER COASTER.");
+          break;
+          case 103: updateText("CURRENT LOCATION UPDATE: YOU ARE AT THE SIDE OF THE YARD WHERE THERE IS A TREE AND AN ENTRANCE TO YOUR HIDEOUT.");
+          break;
+          case 104: updateText("CURRENT LOCATION UPDATE: YOU ARE IN YOUR HIDEOUT WHERE THERE ARE TWO DOORS: ONE TO YOUR LEFT AND ONE TO YOUR RIGHT.");
+          break;
+          case 105: updateText("CURRENT LOCATION UPDATE: YOU ARE WITH MAJOR MONOGRAM WHO IS LOCATED ON THE BIG TELEVISION SCREEN.");
+          break;
+          case 106: updateText("CURRENT LOCATION UPDATE: YOU ARE IN YOUR EQUIPMENT ROOM HWERE THERE ARE COOL DEVICES AND TRANSPORTATION DEVICES.");
+          break;
+          default: alert("ERROR");
+        }
+      }
+     
+    </script>
+  </head>
+  <body style="background-color: orange;">
+    <p>
+      <img src = "http://images.wikia.com/phineasandferb/images/1/15/Heinz_Doofenshmirtz_2.png" width = "450" height = "700" alt = "doof">
+      <img src = "http://4.bp.blogspot.com/-F361c2-C2T4/T1fPKB_VksI/AAAAAAAABFw/IaWj9860y14/s1600/agentP.png" width = "338" height = "450" alt = "agent p">
+    </p>
+    <br>
+    <br />
+    <p>
+      <img src = "http://images.wikia.com/phineasandferb/images/6/66/Phineas_and_Ferb_planning_out_their_rollercoaster_plan.jpg" width = "400" height = "300" alt = "rollercoaster">
+    </p>
+    <br>        
+    <textarea id = "taGame" rows = "20" cols = "160" >You are sitting with Phineas and Ferb in the middle of the backyard. They are preparing to make the coolest roller coaster ever and now is the perfect time to sneak away to your secret hideout.  
+There are many entrances to your hideout and you must find one before someone notices. 
+Which way should we go?
+    </textarea>
+    <br>
+    <input id = "north_button"
+           type = "button"
+           value = "North"
+           onclick = "btn_north_click();">
+    <input id = "east_button"
+           type = "button"
+           value = "East"
+           onclick = "btn_east_click();">    
+    <input id = "south_button"
+           type = "button"
+           value = "South"
+           onclick = "btn_south_click();">    
+    <input id = "west_button"
+           type = "button"
+           value = "West"
+           onclick = "btn_west_click();">
+
+    <br>
+    <br />
+    <input type = "text" 
+           id = "txtCommand">
+    <input type = "button"
+           value = "Go"
+           onclick = "btn_Go_click();">   
+    <br>
+    <br /> 
+    <br>
+    <br />  
+    <input type = "button"
+           value = "Score"
+           onclick = "btn_score_click();">
+    <input type = "button"
+           value = "Current Location"
+           onclick = "btn_CurrentLocation_click();">
+    <br>
+    <br />
+    <p>
+      <a href = "mailto:caitlin.murray1@marist.edu">
+        <img src = "http://www.collectoons.com/imgtoon/255/256/20100108_150924Peter.gif" width = "100" height = "120" alt = "peter">
+      </a>
+      <br>
+      Peter the Panda is a pretty cool agent. If you need to email me, just click on Peter and he'll help you out!
+    </p>
+    <br>
+    <br />
+    <p class="footer">
+      <a href="http://validator.w3.org/#validate_by_input">Validate as HTML5</a>
+      <br>
+      <br />
+    </p>
+  </body>
+</html>
